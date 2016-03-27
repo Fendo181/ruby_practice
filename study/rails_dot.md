@@ -49,9 +49,9 @@ ADMIN_EMAIL ="endo@yahoo.co.jp"  //erroが図れる
 p "hello world"
 ####”helloworld"という文字列はデータ型であってつまりは、__オブジェクト__であります。
 ↓
-- ###_つまりはオブジェクトなので、沢山の命令が使えます!!(!?????)_
-- ###_文字列(hello worldみたいな)オブジェクト(データ)を扱う場合は -String Classで定義されていメソッドを使う事ができます!!_
-- ###_数値object= Numeric クラス_
+- _つまりはオブジェクトなので、沢山の命令が使えます!!(!?????)_
+- _文字列(hello worldみたいな)オブジェクト(データ)を扱う場合は -String Classで定義されていメソッドを使う事ができます!!_
+- _数値object= Numeric クラス_
 ````
 x=10 #100_000_000
 y=20.5
@@ -82,14 +82,14 @@ p y.round(四捨五入)　★
 
 name="tgutiti"
 
-- ###_""で囲む文字列object_
+- _""で囲む文字列object_
   - 変数展開,特殊文字_
   
 ````
 x="hello world #{name}=taguche"  
 ````
 
-###_''で書き込むと文字列oobject  _
+###_''で書き込むと文字列object_
 ````
 y ='hell world #{name}'  
 ````
@@ -143,7 +143,7 @@ p sales[-1]
 p sales[1 ,2]
 ````
 
-###_配列object (2)_ ★★★
+##__配列object (2)__ ★★★
 ###_Array クラスに記述済み_
 ###_置き換える_
 ````
@@ -385,26 +385,29 @@ end
 - break文:roopを抜けます
 
 - _1の時にループを抜ける_
+````
 3.times do |i|
     if i == 1
         break
     end
     puts "#{i}: hello"
 end
+````
 
 
 - nexe:ループを1回スキップ
 - _i==1の時に1をスキップする。_
-
+````
 3.times do |i|
     if i == 1
         next
     end
     puts "#{i}: hello"
 end
+````
 
 
-##__繰り返し処理(2) for,each文__
+##__繰り返し処理(2) for,each文__　★★
 
 - for文
 ````
@@ -434,11 +437,12 @@ end
 ````
 
   - eachメソッドで{Hash}を扱う
-  ````
-  {"red"=>200,"blue"=.300,"pink"=>50}.each do |color,price|
-    puts "#{coloer}: #{price}"
+  
+````
+{"red"=>200,"blue"=.300,"pink"=>50}.each do |color,price|
+puts "#{coloer}: #{price}"
 end
-  ````
+````
 
 
 
