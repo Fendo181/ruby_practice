@@ -264,7 +264,7 @@ s='hello'
 
 ###_%配列記法(""を書かなくてよい!)_
 
-''''
+````
 a=["a","b","c"]  
 ↓
 a =%W(a b c) ★★　で書ける。 
@@ -274,17 +274,20 @@ a='a,'b','c']
 ↓
 a =%w(a b c) ★★　で書ける。 
 p a
-''''
+`````
 
 ##__if文の条件分岐__
 
-
+````
 if 条件
     真
 else
     偽
 end
+````
 
+###_elsif文を書く_
+````
 score = 80;
 
 if (score > 60)
@@ -293,40 +296,48 @@ else if score >40
     puts "SOSO"
 else
     pus "NG!"
+````
 
 ###_if文を後ろから書く_
 
+````
 score = 50;
 puts "OK" if score >60
+````
 
 
 
 ##__真偽値と条件演算子__
+````
 if x == True (Trueが省略されている。)
     puts ""
 end
+````
 
-=begin
 
-true : それ以外(0,""を含む)
-false : false nil(オブジェクトが存在しない)
+- true : それ以外(0,""を含む)
+- false : false nil(オブジェクトが存在しない)
 
-=end
+````
 
 if 条件
     a=b
 else
     a=c
-    
+
+````
+
 ###_条件演算子_★★
 
-a=条件?b:c　★★ 一行でif文elseを掛ける.
+###_a=条件?b:c　一行でif文elseを掛ける_
 
+````
 a=10
 c =20
 
 a=b>c?:b:c (1行でif文)
 puts a; (#20)
+````
 
 ###_多重代入_
 b,c = 10.20
@@ -334,6 +345,7 @@ b,c = 10.20
 
 
 ##__case文で条件分岐__
+>
 
 あるobjectを振り分ける
 
