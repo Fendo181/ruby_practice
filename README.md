@@ -1,4 +1,4 @@
-#はじめてのRuby
+#Ruby文法
 
 ##__データを表示する。__  
 ````
@@ -82,7 +82,28 @@ __”helloworld"とは文字列のデータ型であると同時に文字列の�
 
 ```
 Float
-[:%, :*, :+, :-, :/, :<, :>, :-@, :**, :<=>, :<=, :>=, :==, :===, :eql?, :inspect, :to_int, :to_s, :to_i, :to_f, :hash, :coerce, :divmod, :fdiv, :modulo, :abs, :magnitude, :zero?, :floor, :ceil, :round, :truncate, :positive?, :negative?, :quo, :nan?, :infinite?, :finite?, :next_float, :prev_float, :to_r, :numerator, :denominator, :rationalize, :arg, :angle, :phase, :+@, :singleton_method_added, :div, :i, :remainder, :real?, :integer?, :nonzero?, :step, :rectangular, :rect, :polar, :real, :imaginary, :imag, :abs2, :conjugate, :conj, :to_c, :between?, :instance_of?, :public_send, :instance_variable_get, :instance_variable_set, :instance_variable_defined?, :remove_instance_variable, :private_methods, :kind_of?, :instance_variables, :tap, :singleton_method, :is_a?, :define_singleton_method, :extend, :method, :public_method, :to_enum, :enum_for, :=~, :!~, :respond_to?, :freeze, :display, :object_id, :send, :nil?, :class, :singleton_class, :clone, :dup, :itself, :taint, :tainted?, :untaint, :untrust, :trust, :untrusted?, :methods, :protected_methods, :frozen?, :public_methods, :singleton_methods, :!, :!=, :__send__, :equal?, :instance_eval, :instance_exec, :__id__]
+[:%, :*, :+, :-, :/, :<, :>, :-@, :**, :<=>, :<=, :>=, :==,
+:===, :eql?, :inspect, :to_int, :to_s, :to_i, :to_f, :hash,
+:coerce, :divmod, :fdiv, :modulo, :abs, :magnitude, :zero?,
+:floor, :ceil, :round, :truncate, :positive?, :negative?,
+:quo, :nan?, :infinite?, :finite?, :next_float, :prev_float,
+:to_r, :numerator, :denominator, :rationalize, :arg, :angle,
+:phase, :+@, :singleton_method_added, :div, :i, :remainder,
+:real?, :integer?, :nonzero?, :step, :rectangular, :rect,
+:polar, :real, :imaginary, :imag, :abs2, :conjugate, :conj,
+:to_c, :between?, :instance_of?, :public_send,
+:instance_variable_get, :instance_variable_set,
+:instance_variable_defined?, :remove_instance_variable,
+:private_methods, :kind_of?, :instance_variables, :tap,
+:singleton_method, :is_a?, :define_singleton_method,
+:extend, :method, :public_method, :to_enum, :enum_for, :=~,
+:!~, :respond_to?, :freeze, :display, :object_id, :send,
+:nil?, :class, :singleton_class, :clone, :dup, :itself,
+:taint, :tainted?, :untaint, :untrust, :trust, :untrusted?,
+:methods, :protected_methods, :frozen?, :public_methods,
+:singleton_methods, :!, :!=, :__send__, :equal?,
+:instance_eval, :instance_exec, :__id__]
+
 
 
 
@@ -368,25 +389,73 @@ a=10;
 b="5";  
 ````
 
-`p a+b` 
+```
+p a+b`
 #Errorが起きる  
+
+```
 
 
 ###_文字列を数字として扱いたい_
 ````
+a=10 #数値
+b="5" #文字列
+
 p a+b.to_i #15  (整数)(int)
 p a+b.to_f #15.0 (実数)(float)
 ````
 ###_数字を文字列として扱いたい_文字列 (string)_
 ````
+a=10 #数値
+b="5" #文字列
 p a.to_s+b #105
 ````
 
-###_Hashと配列を総合変換する。_★★
+##__Hashと配列を総合変換する。__
+
+練習コード
+```
+#ハッシュをArrayがたに変換する。
+
+score = {taguchi:200,
+		 endo:300
+}
+
+
+puts "ハッシュとして出力する。"
+puts score
+
+#ハッシュを配列として出力する。
+
+puts score.class 
+puts "ハッシュクラスとわかる。"
+
+#ハッシュクラスの.to_aを使う"
+#配列として表示させられる。
+puts score.to_a
+
+#配列からまたハッシュに戻す
+puts score.to_a.to_h
+
+```
+
+
+実行結果
+```
+ハッシュとして出力する。
+{:taguchi=>200, :endo=>300}
+Hash
+ハッシュクラスとわかる。
+taguchi
+200
+endo
+300
+{:taguchi=>200, :endo=>300}
+
+```
+
 
 ````
-
-(型変換)
 
 h={taguchi: 100,Endo: 200}
 
@@ -403,31 +472,113 @@ p h.to_a.to_h #ハッシュに直す(to Hash)
 
 ##__％記法__
 
->
-""をわざわざ書かなくてよい
-````
-s="hello"
-s=%(hello) ★(推奨)
-S=%Q(hello) == %Q{hello}
-p s
-````
+練習コード
 
-s='hello'
+```
+name="endo"
+
+puts "hello#{name} !"+"なますて"
+#""で囲んだ事と同じ評価になる
+puts %Q(hello#{name}!)+%Q(なますて)
+
+#''で囲んだ頃と同じ評価になる。
+puts 'hell #{name}'
+puts %q(hello #{name})
+
+```
+
+実行結果
+
+```
+helloendo !なますて
+helloendo!なますて
+hell #{name}
+hello #{name}
+
+```
+
+%記法は""や''などを表わしたいときに使う。
+練習コード
+
+```
+puts "\"\"は文字列ですが特殊文字を評価します"
+puts %Q(""は文字列ですが特殊文字を評価します)
+
+```
+
+実行結果
+```
+""は文字列ですが特殊文字を評価します
+""は文字列ですが特殊文字を評価します
+
+```
 
 
-###_%配列記法(""を書かなくてよい!)_
+##__%配列記法__
 
 ````
 a=["a","b","c"]  
 ↓
-a =%W(a b c) ★★　で書ける。 
+a =%W(a b c)
 p a
 
-a='a,'b','c']  
+a=['a,'b','c']  
 ↓
-a =%w(a b c) ★★　で書ける。 
+a =%w(a b c) 
 p a
 `````
+
+##__書式付きで文字列に値を埋め込む__
+>"文字列" %値
+
+- %S 文字列
+- %d 整数
+- $f 浮動小数点
+
+練習コード
+
+```
+# 文字列 %s
+# 整数　%d
+# 浮動小数 %f
+
+p "name: %s" % "taguchi"
+#10桁分の幅を開ける
+p "name: %10s" % "taguchi"
+#10桁を幅を空けつつ左寄せ(-を入れる)にする。
+p"name: %-10s" % "taguchi"
+
+#10.3fは小数点前が10桁、小数点以下が3桁という意味
+#05dは5桁にしたいが、5桁にみたない場合は0を入れてくれという意味
+p "id: %05d, rate: %10.3f:" %[355,3.84]
+
+#これが2fだから小数点以下は2桁となる。
+p "id: %05d, rate: %10.2f:" %[355,3.84]
+
+# printf 書式付きで文字列を表示できる。
+# sprintf 文字列を返すだけ
+
+printf("name: %10s \n","endo")
+printf("id:%05d, rate:%10.2f \n",355,3.284)
+
+#文字列を返す。
+p sprintf("id:%05d, rate:%10.2f \n",355,3.284)
+```
+
+実行結果
+
+```
+"name: taguchi"
+"name:    taguchi"
+"name: taguchi   "
+"id: 00355, rate:      3.840:"
+"id: 00355, rate:       3.84:"
+name:       endo
+id:00355, rate:      3.28
+"id:00355, rate:      3.28 \n"
+
+```
+
 
 ##__if文の条件分岐__
 
@@ -498,39 +649,139 @@ b,c = 10.20
 
 
 ##__case文で条件分岐__
->
 
-あるobjectを振り分ける
+練習コード
 
-````
-signal ="red"
+```
+# case分chomp
 
-case 比較したいオブジェクト
-when "red"
-    "stop!"
-when "green","blue"(複数の値を指定する)
-    "go..!"
-when "yellow"
-    "Caution"
-else
-    puts wrong singnal!
+signal=gets.chomp#最後の改行コードを取り除く(?)
+
+
+#case分は具体的な文字列でわける時に使う    
+case signal
     
-````
+when "red" then
+    puts "stop!"
+when "green","blue" then
+    puts "go!"
+when "yellow" then
+    puts "caution!"
+else
+    puts "wrong signal!"
+    
+end #最後はendで占める
+
+```
+
+実行結果
+
+```
+[vagrant@localhost RubyStudy_2.3.0]$ ruby case.rb
+red
+stop!
+[vagrant@localhost RubyStudy_2.3.0]$ ruby case.rb
+bllue
+wrong signal!
+[vagrant@localhost RubyStudy_2.3.0]$ ruby case.rb
+blue
+go!
+
+
+```
 
 ##__繰り返し処理__
 
 ###_timeメソッド_
 
-````
-3.times do |i|
-    puts "#{i}:hello"
+
+timesメソッドを使ってFizzBuzz問題
+
+[Qiitaに記事上げました](http://qiita.com/Fendo181/items/425293e8e638d7fd7cea)
+
+
+練習コード
+```
+#FizzBuzz問題
+i=0
+
+#0から30まで繰り返す
+31.times do |i|
+
+if (i%15==0 && i!=0)
+    puts "FizzBuzz!"
+elsif(i%3==0 && i!=0)
+    puts "Fizz!"
+elsif(i%5==0 && i!=0)
+    puts "Buzz!"
+else
+    puts "#{i}"
+    end
 end
-````
+```
 
-0:hello  
-1:hello  
-2:hello  8
 
+実行結果
+```
+0
+1
+2
+Fizz!
+4
+Buzz!
+Fizz!
+7
+8
+Fizz!
+Buzz!
+11
+Fizz!
+13
+14
+FizzBuzz!
+16
+17
+Fizz!
+19
+Buzz!
+Fizz!
+22
+23
+Fizz!
+Buzz!
+26
+Fizz!
+28
+29
+FizzBuzz!
+
+```
+
+
+
+一行でtimesメソッドを書く
+
+
+```
+j=0
+10.times{ |j| puts "#{j}:hello" }
+
+```
+
+実行結果
+
+```
+0:hello
+1:hello
+2:hello
+3:hello
+4:hello
+5:hello
+6:hello
+7:hello
+8:hello
+9:hello
+```
 ###__timesを使うと必ず0から始まるので、そこだけ注意して下さい!__
 
 ###_while文__
@@ -572,7 +823,7 @@ end
 ````
 
 
-##__繰り返し処理(2) for,each文__　★★
+##__繰り返し処理(2) for,each文__
 
 - for文
 ````
