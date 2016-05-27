@@ -825,40 +825,85 @@ end
 
 ##__繰り返し処理(2) for,each文__
 
-- for文
-````
-for i in 0..2 do (0から2までの範囲=(0,1,2)=3回回す)
-    puts i
+
+練習コード
+```
+#for
+#inにはobjectが入る
+
+for i in 18..20 do #doは省略できる
+    p i
 end
+
+puts %q(15..20は"15から20まで"を表わす)
+
+for i in 18...20 do 
+    p i
+end
+
+puts %q(15...20は"15から20以下"を表わす)
+
+for color in ["red","blue"] do
+    p color
+end
+
+
+for name,score in {taguchi:200,end:400} do
+    puts "#{name}: #{score}"
+end
+
+
+#forは内部でeach文を使っている。
+
+puts "eachメソッドで書いてみる。"
+
+(18..20).each do |i| #times関数っぽい
+    p i
+end
+
+#配列
+["red","blue"].each do |color|
+    p color
+end
+
+
+#Hash変数
+
+{taguchi:200,end:400}.each do |name,score|
+    puts "#{name}: #{score}"
+end
+
 ```
 
-  - 配列書き換えてみる
-  
+実行結果
 
-````
-    for coloer in ["red","blue","pink"] do
-    puts coloer
-    end
-````
+```
+18
+19
+20
+15..20は"15から20まで"を表わす
+18
+19
+15...20は"15から20以下"を表わす
+"red"
+"blue"
+taguchi: 200
+end: 400
+eachメソッドで書いてみる。
+18
+19
+20
+"red"
+"blue"
+taguchi: 200
+end: 400
 
-red  
-blue  
-pink  
+```
 
-- eaccメソッドの方が配列は使いやすい
-````
-["red","blue","pink"].each do |color|
-    puts coler
-end
-````
+##__メソッドを作ってみる。__
 
-  - eachメソッドで{Hash}を扱う
-  
-````
-{"red"=>200,"blue"=.300,"pink"=>50}.each do |color,price|
-puts "#{coloer}: #{price}"
-end
-````
+
+
 
 
 

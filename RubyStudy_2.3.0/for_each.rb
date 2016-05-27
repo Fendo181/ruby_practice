@@ -25,6 +25,8 @@ end
 
 #forは内部でeach文を使っている。
 
+puts "eachメソッドで書いてみる。"
+
 (18..20).each do |i| #times関数っぽい
     p i
 end
