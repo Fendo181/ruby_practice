@@ -246,8 +246,9 @@ true
 
 ````
 sales =[1,2,3]
+puts salse[0] #1
 sales[0]=10
-p sales[0] #1
+p sales[0] #10
 p sales[5] #nil =何もない
 ````
 
@@ -516,17 +517,41 @@ puts %Q(""は文字列ですが特殊文字を評価します)
 
 ##__%配列記法__
 
-````
-a=["a","b","c"]  
-↓
-a =%W(a b c)
-p a
 
-a=['a,'b','c']  
-↓
-a =%w(a b c) 
+````
+=begin
+%w(小文字) 配列を作る
+配列を作る。配列の要素はスペース区切りで指定する。
+式の展開はされない。
+=end
+
+a=["a","b","c"]
 p a
+b=%w(a b c) 
+p b
+#############
+=begin
+%W(大文字),配列を作る。式の展開がされる。
+配列を作る。%w()と違い、式の展開がされる。
+=end
+apple='red'
+banana='yellow'
+
+ #エディターによるとこれがコメントアウトしてる様に見える。
+array=%W(#{apple} #{banana} PHP)
+    
+p array
+
 `````
+
+実行結果
+
+```
+["a", "b", "c"]
+["a", "b", "c"]
+["red", "yellow", "PHP"]
+
+```
 
 ##__書式付きで文字列に値を埋め込む__
 >"文字列" %値
@@ -902,16 +927,204 @@ end: 400
 
 ##__メソッドを作ってみる。__
 
+defから始めます。
+
+```
+
+def メソッド名
+    puts "Hi!"
+end
+
+メソッド名 #メソッド呼び出し
+
+```
+__メソッドルール__
+- メソッドは最後位評価された値をそのまま返すので**
+- メソッド内で定義されや変数には外からアクセスできないというルールがあるのでそれにも注意して下さい。
+
+練習コード
+
+```
+def sayHi(name) #引数は,区切りで複数与えられる
+    puts "{name} hi!endo" #()は引数を展開できない。
+end
 
 
+sayHi("taguchi")
+#sayHi Error デファルト値があるからErrorが起きる
+
+#デフォルト値を設定する事ができる、
+
+def sayHo(name="endo")
+    puts "#{name} ho yo! Fuck!"
+end
+
+sayHo("takahashi")
+sayHo #デファルト値があるからErrorが起きない
 
 
+#文字列を返してもらうだけ
+def sayHei(name)
+    score =80 #ローカル変数(このメソッド内でしか有効じゃない)
+    #"Hey #{name}"
+    #明示的に返してほしいなら
+    return "Hey #{name}"
+end
+
+puts sayHei("endo")
 
 
+```
+
+実行結果
+
+```
+#(name) hi!endo
+takahashi ho yo! Fuck!
+endo ho yo! Fuck!
+Hey endo
+````
 
 
+##__クラスを作る__
+
+- クラス名は必ず最初の文字は大文字
+- インスタンス生成時に呼ばれるメソッドは`def initialize`と定義する。この時にクラス外から渡される値をインスタンス内で使うようにするためにインスタンス変数を作る(@インスタンス変数)
+
+練習コード
+```
+class User #最は大文字は
+    
+    #インスタンス時に呼ばれる処理
+    
+    def initialize(name) #仮引数に"endo"を入れる
+        #インスタンス変数(インスタンス内で保持する事ができる。)
+        @name =name
+    end
+    
+    #@nameはこのインスタンス(クラス?)内ではどこでも利用できる。
+    
+    def sayHi
+        puts "Hi! i am #{@name}"
+    end
+    
+end
 
 
+#インスタンスを生成する。
+#tomはインスタンスオブジェクトです。
+
+tom=User.new("endo")
+#sayHiめそっど呼び出し
+tom.sayHi
+
+bob=User.new("bob")
+#sayHiめそっど呼び出し
+bob.sayHi
+
+```
+
+実行結果
+
+```
+Hi! i am endo
+Hi! i am bob
+```
+
+
+##__アクセサを使ってみよう__
+
+
+- インスタンス変数にクラス外からアクセスする為のメソッドです。
+- アクセッサー(ゲッター+セッター「)
+
+`attr_accessor`で呼び出すことができます。
+
+練習コード
+
+```
+class Book
+    
+    #アクセサ(getter+setter)
+    attr_accessor :title,:price
+    
+    def initialize(title,price)
+        #@の名前は一致させる
+        @title=title; @price=price;
+    end
+    
+    def sayPrice
+        puts "Price is #{@price}"
+        #self演算子
+        puts "price is #{self.price}"
+        #self演算子の省略
+        puts "price is #{price}"
+    end
+    
+end
+
+
+#def sayHi(price_def){
+#    puts "#Price is #{price_def}"
+#    }
+
+#アクセッサーを用いたメソッド呼び出し
+    
+book = Book.new("EndoBook",2389)#インスタンス生成
+puts book.title
+puts "#{book.price}円"
+
+book.sayPrice
+
+#インスタンス変数の名前を変えずに値を変えたい時にアクセッサが便利
+book.title="TakahashiBooks"
+book.price=2050
+
+puts book.title
+book.sayPrice
+
+#別の名前にしたい
+book_bob=Book.new("BobBobAdventure",1980)
+puts book_bob.title
+puts book_bob.price
+
+book_bob.sayPrice
+
+#インスタンス変数bookのタイトル名はこれで固定された
+puts  book.title
+
+    
+```
+
+
+実行結果
+
+```
+
+#最初のインスタンス精製
+EndoBook
+2389円
+Price is 2389
+price is 2389
+price is 2389
+
+#アクセサを使って最初のインスタンス変数名を変えずにpriceとtitleを変える。
+TakahashiBooks
+Price is 2050
+price is 2050
+price is 2050
+
+#インスタンス精製2回目
+BobBobAdventure
+1980
+Price is 1980
+price is 1980
+price is 1980
+
+TakahashiBooks
+
+
+```
 
 
 
