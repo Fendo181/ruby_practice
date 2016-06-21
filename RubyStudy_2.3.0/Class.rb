@@ -12,7 +12,8 @@ class User #最は大文字は
     
     #ゲッターのみ
     # attr_reader :name
-    
+   
+    #インスス時に呼び出される
     def initialize(name) #仮引数に"endo"を入れる
         #インスタンス変数(インスタンス内で保持する事ができる。)
         @name =name

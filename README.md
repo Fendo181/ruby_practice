@@ -1036,7 +1036,7 @@ Hi! i am bob
 
 
 - インスタンス変数にクラス外からアクセスする為のメソッドです。
-- アクセッサー(ゲッター+セッター「)
+- アクセッサー(ゲッター+セッター)
 
 `attr_accessor`で呼び出すことができます。
 
@@ -1045,20 +1045,25 @@ Hi! i am bob
 ```
 class Book
     
-    #アクセサ(getter+setter)
-    attr_accessor :title,:price
+    #アクセッサ-(getter+setter)
+   attr_accessor :title,:price
+   
+    #Getterだけ設定したい。
     
-    def initialize(title,price)
-        #@の名前は一致させる
-        @title=title; @price=price;
-    end
+    #attr_reader :name
     
-    def sayPrice
-        puts "Price is #{@price}"
-        #self演算子
-        puts "price is #{self.price}"
-        #self演算子の省略
-        puts "price is #{price}"
+   def initialize(title,price)
+       #@の名前は一致させる
+       @title=title; @price=price;
+   end
+    
+   def sayPrice
+       puts "Price is #{@price}"
+        #selfオブジェクト=そのメソッドを受け取っているインスタンス自身を指します。この場合だとbook.sayPrice(レシーバ)が相当する。
+       puts "price is #{self.price}"
+       
+       #self演算子の省略
+       puts "price is #{price}"
     end
     
 end
@@ -1074,7 +1079,7 @@ book = Book.new("EndoBook",2389)#インスタンス生成
 puts book.title
 puts "#{book.price}円"
 
-book.sayPrice
+book.sayPrice #
 
 #インスタンス変数の名前を変えずに値を変えたい時にアクセッサが便利
 book.title="TakahashiBooks"
@@ -1127,5 +1132,210 @@ TakahashiBooks
 ```
 
 
+##__クラスメソッド、クラス定数__
+
+概要
+
+- クラスメソッド=クラスから直接呼び出せるメソッド(インスタンス変数を呼び出さなくて良い。)
+- クラス定数=(一文字が大文字)個々のインスタンスではなくインスタンス全てで値を共有することができます。
+
+練習コード
+
+```
+class User
+    
+    #@@がクラス変数
+    @@count = 0 #初期化
+    
+    def initialize(name)
+        @@count += 1
+        @name = name
+    end
+    
+    def sayHi
+        puts "Hi! i am #{@name}"
+    end
+    
+    #クラスメソッド①
+    def self.sayHo
+        puts "Say Ho!"
+        puts "Count is #{@@count} insyatance"
+    end
+    
+        
+    #クラスで定数①
+    VERSION = "これはクラス定数です。" #これもクラス外からアクセスできる。
+
+end
+
+#インスタンスを使わずにメソッドを呼び出します。
+
+
+tom = User.new("tom")
+bob = User.new("bob")
+steave = User.new("Steave")
+
+#クラスメソッド呼び出し
+User.sayHo
+
+#クラス定数呼び出し
+puts User::VERSION
+
+```
+
+実行結果
+
+```
+Say Ho!
+Count is 3 insyatance
+これはクラス定数です。
+
+```
+
+##__継承クラスの基本__
+
+概要
+- 継承クラスは子クラスとも呼ばれ、親クラスのメソッド、変数を宣言なしに使えます(継承する。)
+- また、親クラスのメソッドの上書きも可能であり、その際にはOverrideされる為、継承クラスのインスタンス時には子クラス内でoverrideされたメソッドが優先される。
+
+練習コード
+
+```
+#継承クラスについて
+
+class User
+    
+
+    
+    def initialize(name)
+     
+        @name = name
+    end
+    
+    def sayHi
+        puts "Hi! i am #{@name}"
+    end
+    
+end
+
+#User:親クラス,Super Class
+#AdminUser:子クラス,sub Class
+#継承クラスを作る(<)する。
+#継承クラスは親クラスのメソッドや変数を使える。
+
+#子やクラス
+class AdminUser < User
+    
+    def sayHo
+        #親クラスの変数をそのまま使える。
+        puts "ho! from #{@name}"
+    end
+    
+    #親クラスのメソッドの上書きをするOverride
+    def sayHi
+        puts "Hi! Yo! "
+    end
+    
+    
+end
+
+#あくまでここで呼び出しているのは子クラス(継承のみ)
+#従って優先されるのは継承クラスでoverrideされたメソッドのみ
+
+tom =AdminUser.new("tom")
+
+tom.sayHi
+tom.sayHo
+```
+
+実行結果
+
+```
+Hi! Yo!
+ho! from tom
+```
+
+#__メソッドのアクセス権__
+
+- public どこからでも
+- protected 外部から隠ぺいしたい
+
+本家
+
+>
+つまり，privateは自分からしか見えないメソッドであるのに対し
+て，protectedは一般の人からは見られたくないが，仲間(クラスが
+同じオブジェクト)からは見えるメソッドです。protectedは例えば2項演算子の実装にもう一方のオブジェクトの状態を知る必要があるか調べる必要があるが，そのメソッドをpublicにして，広く公開するのは避けたいというような時に使います．
+
+- private:レシーバを指定できない。 セキュリティー対策  
+
+- 例外として、new したときに呼ばれる initialize メソッドと、クラスの外に書いたメソッドは自動的に private になるので、覚えておきましょう  
+- Ruby の private 指定は他の言語のオブジェクト指向プログラミングと動作が異なっていて、Sub Class から呼び出せたり、オーバーライドすることができたりするので、十分注意して使う
+
+練習コード
+
+```
+
+
+class User
+    
+    def sayHi
+        puts "hi1"
+        puts "ここは親クラス内のメソッドです!"
+        sayPrivate
+        #意味的には self.sayPrivate なのですが、private 
+        #ではレシーバーを指定できないので必ず self は省略してあげて
+        #sayPrivate のように書いてあげてください。
+        
+    end
+    
+    private#クラス内ならば使える
+        def sayPrivate
+            puts "これはプライドメソッドです。"
+        end
+
+end
+
+##クラスが継承されるのでprivateメソッドは子クラス内で呼び出すことが可能。
+
+class AdminUser < User
+    
+    def sayHo
+        puts "hello!これは継承クラス内のメソッドです!"
+        sayPrivate #privateメソッド
+    end
+    
+    #なおかつ同名のメソッドの上書きも可能となる。
+    
+    def sayPrivate
+        puts "privateメソッドをOverrideした"
+        puts "private from Admnin"
+    end
+    
+
+    
+end
+
+#User.new.sayPrivace NG privareアクセス権かかっているので
+
+User.new.sayHi #こここで始めてprivateメソッドが呼ばれる。
+AdminUser.new.sayHo
+
+#over rideの呼び出し
+AdminUser.new.sayPrivate
+```
+
+実行結果
+
+```
+hi1
+ここは親クラス内のメソッドです!
+これはプライドメソッドです。
+hello!これは継承クラス内のメソッドです!
+privateメソッドをOverrideした
+private from Admnin
+privateメソッドをOverrideした
+private from Admnin
+```
 
 
