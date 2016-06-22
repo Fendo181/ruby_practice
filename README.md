@@ -1338,4 +1338,179 @@ privateメソッドをOverrideした
 private from Admnin
 ```
 
+##__モジュールで名前空間を作ろう__
 
+今回はモジュールで名前空間のみ
+
+```
+#module
+#名前空間
+
+=begin
+
+def movie_encode
+    
+end
+    
+def movie_export
+end
+
+これらのメソッド名は他の人も使って衝突が起きやすくなる。
+
+=end
+
+#モジュールを使って自分だけの名前空間を作ってあげれば便利!
+
+#これらのメソッド名が他の人が作ったメソッド名や、ライブラリのメソッド名などと衝突しないか心配になってきます。
+
+#Moduleを作ることで名前空間を使う
+module Movie
+    
+    VERSION = 1.1
+    
+    #クラスメソッドの様に書けばいい
+    def self.encode
+        puts "encodeing.."
+    end
+    
+    
+    def self.export
+        puts "exporting.."
+    end
+end
+
+Movie.encode
+Movie.export
+
+puts Movie::VERSION
+
+
+#別のモジュールを作る(名前空間的な)
+module Movie2
+    
+    VERSION = 1.1
+    
+    #クラスメソッドの様に書けばいい
+    def self.encode
+        puts "encodeing.."
+    end
+    
+    
+    def self.export
+        puts "exporting.."
+    end
+end
+
+Movie2.encode
+Movie2.export
+
+puts Movie2::VERSION
+
+```
+
+実行結果
+
+```
+encodeing..
+exporting..
+1.1
+encodeing..
+exporting..
+1.1
+
+```
+
+
+#__ミックスイン(モジュールの応用)__
+
+概要
+
+- ミックスインに関してはもっと複雑なこともできるのですが、継承関係にない複数のクラスに共通の機能を提供する場合に便利なので慣れておくといいかと思います。
+
+- ミックスインのメインの機能として継承関係にない複数のクラスに共通の機能を提供する場合に便利である
+
+練習コード
+
+```
+
+module Debug
+    
+    def info
+        puts "#{self.class} debug"
+    end
+end
+
+class Player
+    #ミックスイン
+    include Debug
+end
+
+class Monster
+    #ミックイン
+    include Debug
+end
+
+Player.new.info
+Monster.new.info
+
+```
+
+実行結果
+
+```
+Player debug
+Monster debug
+```
+
+
+##__例外処理__
+
+練習コード
+
+
+```
+x=gets.to_i
+#自分で例外クラスを作る
+class MyError < StandardError; end
+
+#p 100/x #0を入れるとErrorが発生します。
+#例外処理の書き方
+begin
+    if x == 3
+        raise MyError #自分が作った例外処理を発生させる
+    end
+    p 100/x 
+#例外クラスで発生したオブジェクトMyErrorを作る。
+rescue MyError
+        puts "noy 3!"#独自のメッセージを作る
+        
+rescue => ex #発生した例外をexに入れる。
+    p "エラメッセージ"+"#{ex.message}" #予めた用意されたメッセージを表示する
+    p "エラー起こしたクラス"+"#{ex.class}" #このオブジェクト名のクラス名
+    puts "例外が"+"発生しましたよ!"
+    puts "stopped!"
+    
+ensure#例外が発生しよがしまいが、最後に絶対実行したい処理
+    puts " __END__"
+end
+```
+
+実行結果の検証
+
+0を入力した時
+```
+0
+"エラメッセージdivided by 0"
+"エラー起こしたクラスZeroDivisionError"
+例外が発生しましたよ!
+stopped!
+ __END__
+```
+
+3を入力した時
+
+```
+3
+noy 3!
+
+```
