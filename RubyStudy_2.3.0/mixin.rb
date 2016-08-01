@@ -31,3 +31,7 @@ Monster.new.info
 
 module+Class
 =end
+
+
+
+
