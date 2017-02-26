@@ -11,5 +11,4 @@
   - [ruby 2.3.1をCentOS7に導入する。](http://qiita.com/Fendo181/items/d14ebfb148223c8e5ecb)
   - [Ruby 2.3.1でFizzBuzz問題を解く。](http://qiita.com/Fendo181/items/425293e8e638d7fd7cea)
 - 2017_02_22
-  - README.mdに貼ってあった文法をQiitaの方で綺麗にまとめた。
-  - []()
+  - [Ruby基礎文法](http://qiita.com/Fendo181/private/eb2cb17f32d99aa01f59)
