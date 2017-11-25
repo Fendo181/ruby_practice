@@ -12,3 +12,5 @@
   - [Ruby 2.3.1でFizzBuzz問題を解く。](http://qiita.com/Fendo181/items/425293e8e638d7fd7cea)
 - 2017_02_22
   - [Ruby基礎文法](http://qiita.com/Fendo181/items/eb2cb17f32d99aa01f59)
+- 2017_11_25
+  - [YawarakaRubyを追加](https://gist.github.com/udzura/7548163#file-yawaraka-md)

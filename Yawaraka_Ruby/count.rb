@@ -1,0 +1,1 @@
+puts "paperboy".count("p")
