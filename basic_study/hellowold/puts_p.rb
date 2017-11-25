@@ -1,0 +1,9 @@
+print ("putsです。")
+print ("\n")
+puts 100
+puts 100
+# ちゃんと文字列だけ認識できる。
+print ("pです。")
+print ("\n")
+p "100"
+p 100
