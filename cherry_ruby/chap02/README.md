@@ -154,3 +154,10 @@ puts name1 + name2 #endofutoshi
 ```
 
 #### 文字列の比較
+
+```rb
+puts 'ruby' == 'ruby' #true
+puts 'ruby' == 'Ruby' #false
+puts 'ruby' == 'perl' #false
+puts 'ruby' != 'ruby' #false
+```
