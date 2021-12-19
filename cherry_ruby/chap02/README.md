@@ -161,3 +161,18 @@ puts 'ruby' == 'Ruby' #false
 puts 'ruby' == 'perl' #false
 puts 'ruby' != 'ruby' #false
 ```
+
+### 数値
+
+整数同士の割り算は整数になる。少数以下が必要になる場合はどちらかを少数にする。
+`to_f`メソッドを加える事で整数から少数になる
+
+```rb
+puts 10
+puts -2
+puts 1.52
+puts -1.32
+
+puts 1/2 #0 整数同士の割り算は整数になる
+puts 1.0/2.0 # 0.5
+```
