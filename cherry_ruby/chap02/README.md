@@ -216,4 +216,24 @@ end
 # true 
 ```
 
+#### 倫理演算子
+
+```ruby
+t1 = true
+t2 = true
+f1 = false
+f2 = false
+
+puts t1 && t2 || f1 && f2 # true
+puts true || false # true
+```
+
+`&&`の優先順位は`||`よりも高い。もし優先順位を変えたい場合は`()`を使う。
+また`!`演算子を使うと真偽値を反転させる事ができる。
+
+```ruby
+puts t1 && (t2||f1) && f2 #false
+puts true||false #true
+puts true && (true||false) && false #false
+```
 
