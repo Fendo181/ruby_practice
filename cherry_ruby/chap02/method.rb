@@ -12,3 +12,20 @@ def hello_world
 end
 hello_world()
 
+
+def greet(country)
+    return 'countryを入力してください' if country.nil?
+    if country == 'japan'
+        'こんにちは'
+    elsif country == 'us'
+        'Hello'
+    elsif country == 'italy'
+        'Ciao'
+    else '???'
+  end
+end
+
+puts greet('japan') #こんにちは
+puts greet('us') #Hello
+puts greet(nil) #countryを入力してください
+

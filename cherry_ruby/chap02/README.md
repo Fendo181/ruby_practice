@@ -321,3 +321,37 @@ puts add(1,2)
 ```
 メソッド名も変数名もスネークケースで書きます。キャメルケース(PHPではよく使う)ではかきません。
 また、メソッド名の最初の文字に_(アンダースコア)も使えます。
+
+#### メソッドの戻り値
+
+またメソッドの戻り値として`return`を設定する事も出来ますが、Rubyでは最後に評価された式がメソッドの戻り値となるのが特徴です。
+returnのようなキーワードは不要です。
+
+```rb
+def add(a,b)
+    return a+b
+end
+puts add(1,2)
+```
+
+なのでreturnを使わずに以下のようにコードがかけます。
+`return`はメソッドを途中で脱出する場合に使われる事が多い。 
+
+```rb
+def greet(country)
+    return 'countryを入力してください' if country.nil?
+    if country == 'japan'
+        'こんにちは'
+    elsif country == 'us'
+        'Hello'
+    elsif country == 'italy'
+        'Ciao'
+    else '???'
+  end
+end
+
+puts greet('japan') #こんにちは
+puts greet('us') #Hello
+puts greet(nil) #countryを入力してください
+
+```
