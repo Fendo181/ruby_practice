@@ -237,3 +237,69 @@ puts true||false #true
 puts true && (true||false) && false #false
 ```
 
+
+#### if文
+
+Rubyのif文は最後に評価された式を戻り値と返す性質があります。
+
+```ruby
+country = 'japan'
+
+greeting =
+  if country == 'japan'
+   'こんにちは!'
+ elsif country == 'italy'
+   'Ciao'
+ elsif country == 'us'
+   'Hello'
+  end
+
+puts greeting #こんにちは
+```
+
+`else節`がなく、なおかつどこにも条件がかぶってない場合は`nil`が返ってきます。
+※`false`ではないです。
+
+```ruby
+country = 'hoge'
+greeting =
+  if country == 'japan'
+    'こんにちは!'
+  end
+
+puts greeting #nil
+```
+
+Rubyのif文は修飾子として文の後ろに置く事ができます。この場合のifは「後値if」と呼ばれる事があります。
+
+一般的なif
+
+```ruby
+point = 7
+day = 1
+if day == 1
+  point *= 5
+end
+puts point #35
+```
+
+後値if
+
+```ruby
+point = 7
+day = 1
+point *= 5 if day == 1
+puts point
+```
+
+また、if文には`then`を入れると、次のように条件式とその条件が真の場合の処理を1行に押し込める事ができる。 
+
+```rb
+country = 'italy'
+greeting = if country == 'japan' then 'こんにちは'
+  elsif country == 'us' then 'Hello'
+  elsif country == 'italy' then 'Ciao'
+  else '???'
+end
+puts greeting
+```
