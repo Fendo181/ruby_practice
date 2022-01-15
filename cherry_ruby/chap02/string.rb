@@ -5,7 +5,7 @@ puts "こんにちは!\nさようなら"
 message = 'おはよう!'
 puts "#{message}";
 
-i = 10;
+i = 10
 puts "#{i}は16進数にすると#{i.to_s(16)}です"
 
 name1 = 'endo'
