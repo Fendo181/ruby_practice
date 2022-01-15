@@ -1,5 +1,35 @@
 # Ruby
 
+## Setup
+
+### Rubyをinstall
+
+`rbenv`でinstallしてください。
+
+```rb
+brew install rbenv
+```
+
+```sh
+rbenv install --list
+rbenv install *** #環境に合わせて必要なrubyをinstallしてください。
+rbenv global ***
+```
+
+### bundleをinstall
+
+まずグローバル環境にbundleをinstallします。
+
+```sh
+gem install bundle
+```
+
+次に`bundle exec`でローカル環境に`Gemfile`に書かれたライブラリをinstallします
+
+```
+bundle install --path=vendor/bundle
+```
+
 ## 概要
 今後増えるであろうRubyの勉強場所としてのリポジトリです。
 
