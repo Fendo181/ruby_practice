@@ -1,10 +1,10 @@
 def fizz_buzz(num)
-  if num%3 == 0
+  if num%15 == 0
+    'fizz_buzz'
+  elsif num%3 == 0
     'fizz'
   elsif num%5 == 0
     'buzz'
-  elsif num%15 == 0
-    'fizz_buzz'
   else
     num.to_s
   end
