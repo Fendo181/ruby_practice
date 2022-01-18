@@ -364,3 +364,29 @@ end
 
 puts greet_no_value()
 ```
+
+#### 文字列についてもっと詳しく
+
+`%記法`で文字列を作る事ができる
+
+```ruby
+#%q! !はシングルクオートで囲んだ事る
+puts %q!He said, "Don't speak"!
+#%Q! !はダブルクオートで囲んだ事になる
+something = "Hello"
+puts %Q!He said, "#{something}"!
+# 通常
+message = 'Hi!'
+puts "#{message}"
+```
+
+#### ヒアドキュメント
+
+`<<識別子`を設定してヒアドキュメントを定義する事ができる
+
+```ruby
+a = <<TEXT
+これはヒアドキュメントです
+複数行に渡る文字列を作成する事が可能です
+TEXT
+```
