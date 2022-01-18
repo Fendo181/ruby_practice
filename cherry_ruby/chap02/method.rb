@@ -14,7 +14,6 @@ hello_world
 
 def greet(country)
   return 'countryを入力してください' if country.nil?
-
   if country == 'japan'
     'こんにちは'
   elsif country == 'us'
@@ -29,3 +28,10 @@ end
 puts greet('japan') # こんにちは
 puts greet('us') # Hello
 puts greet(nil) # countryを入力してください
+
+# 引数のないメソッドであれば次のように()を省略できます。
+def greet_no_value
+  'こんにちは()なし'
+end
+
+puts greet_no_value

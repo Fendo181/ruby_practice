@@ -353,5 +353,14 @@ end
 puts greet('japan') #こんにちは
 puts greet('us') #Hello
 puts greet(nil) #countryを入力してください
+```
 
+また、引数のないメソッドであれば次のように()を省略できます。
+
+```rb
+def greet_no_value
+'こんにちは()なし'
+end
+
+puts greet_no_value()
 ```
