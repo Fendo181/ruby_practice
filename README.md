@@ -30,6 +30,12 @@ gem install bundle
 bundle install --path=vendor/bundle
 ```
 
+### rubocopでコードを整形する
+
+```rb
+bundle exec rubocop -A
+```
+
 ## 概要
 今後増えるであろうRubyの勉強場所としてのリポジトリです。
 
