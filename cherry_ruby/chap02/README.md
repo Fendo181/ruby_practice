@@ -418,3 +418,21 @@ puts nil || false #false
 puts false || nil #nil
 puts nil || false || 2 || 3 #2
 ```
+
+#### unless/
+
+if文で否定の条件を書いている時は、unless文に置き換えができます
+
+```rb
+status = 'erro'
+if status != 'ok'
+    puts '何か異常があります'
+end
+
+status = 'error'
+unless status == 'ok'
+    puts '何か異常があります'
+else
+    puts '正常です'
+end
+```
