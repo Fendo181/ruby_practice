@@ -419,7 +419,7 @@ puts false || nil #nil
 puts nil || false || 2 || 3 #2
 ```
 
-#### unless/
+#### unless文
 
 if文で否定の条件を書いている時は、unless文に置き換えができます
 
@@ -435,4 +435,27 @@ unless status == 'ok'
 else
     puts '正常です'
 end
+```
+
+#### case when文
+
+１つのオブジェクトを複数の値で比較する場合はif文よりもcase文の方で書いたほうがシンプルになります。
+他のPHPやJavascriptの`switch case`違い最後にbreak文を書かなくも、次のcase節が処理される事はないです。
+
+```rb
+def say_country(country)
+  case country
+  when 'japan','日本'
+    'こんにちは!'
+  when 'us','アメリカ'
+    'Hello!'
+  when 'italy','イタリア'
+    'Ciao!'
+  else
+    '???'
+  end
+end
+
+puts say_country('日本') # こんにちは!
+puts say_country('us') # Hello!
 ```
