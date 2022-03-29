@@ -459,3 +459,22 @@ end
 puts say_country('日本') # こんにちは!
 puts say_country('us') # Hello!
 ```
+
+#### 条件演算子(三項演算子)
+
+シンプルな`if/else`の場合は三項演算子で置き換えるとシンプルに記述する事ができるようになる
+
+```rb
+n = 11
+result = if n > 10
+  '10より大きい'
+else
+  '11より大きい'
+end
+puts result
+
+# 三項演算子で書き換える
+n = 11
+result =  n > 10 ? '10より大きい' : '11より大きい'
+puts result
+```
