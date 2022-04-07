@@ -478,3 +478,25 @@ n = 11
 result =  n > 10 ? '10より大きい' : '11より大きい'
 puts result
 ```
+
+### 2.11 メソッドについてもっと詳しく
+デフォルト値付きの引数を設定する。
+
+```
+def メソッド(引数 = デフォルト値, 引数2 = デフォルト値2)
+end
+```
+
+例
+
+```rb
+def greet(country = 'japan')
+  if country == 'japan'
+    'こんにちは！'
+  else
+    'Hello!'
+  end
+end
+
+puts greet # こんにちは!
+```
