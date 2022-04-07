@@ -502,6 +502,7 @@ puts greet # こんにちは!
 ```
 
 #### ?で終わるメソッド
+
 rubyでは?で終わる場合は慣習として真偽値(trueか、false)が返るようになる
 
 ```rb
@@ -526,3 +527,23 @@ puts multiple_of_three?(4) #false
 puts multiple_of_three?(5) #true
 puts multiple_of_three?(9) #true
 ```
+
+#### !で終わるメソッド
+
+`!`で終わるメソッドは、`!`が付いてないメソッドよりも危険という意味を持ちます。`!`で終わるメソッドを使う時は注意が必要です。  
+例えば`String`クラスには`upcase`メソッドと`upcase!`メソッドという2つのメソッドがあります。
+`upcase`で呼ばれた方は元の変数は変わらないですが、`upcase!`で呼ばれた方は元の値を変更してしまいます。
+このように元の値を変更してしまうメソッドを「破壊的メソッド」と呼びます。
+
+```rb
+a = 'ruby'
+
+# upcaseだと変数の値aの値は変化しない
+puts a.upcase # RUBY
+puts a # ruby
+
+puts a.upcase! # RUBY
+puts a  # RUBY
+```
+
+ここで紹介した`!`や`?`はメソッドでは使えますが、変数名で定義しようとするとエラーが出ます。
