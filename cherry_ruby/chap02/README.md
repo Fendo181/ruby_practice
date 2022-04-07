@@ -500,3 +500,29 @@ end
 
 puts greet # こんにちは!
 ```
+
+#### ?で終わるメソッド
+rubyでは?で終わる場合は慣習として真偽値(trueか、false)が返るようになる
+
+```rb
+puts ''.empty? #true
+puts 'abc'.empty? #false
+
+# 引数の文字列が含まれていればtrue、そうでなければfalse
+puts 'watch'.include?('at') #true
+puts 'watch'.include?('att') #false
+```
+
+?で終わるメソッドは自分で定義する事もできます。
+返り値として `true` や `false` を返す場合は`?`で終わすようにすれば良い
+
+```rb
+# ３の倍数ならtrue、それ以外はfalseを返す
+def multiple_of_three?(n)
+  n % 3 == 0 
+end
+
+puts multiple_of_three?(4) #false
+puts multiple_of_three?(5) #true
+puts multiple_of_three?(9) #true
+```
